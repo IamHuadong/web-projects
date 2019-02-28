@@ -1,0 +1,226 @@
+*{
+	margin: 0;
+	padding: 0;
+}
+
+#container{
+	background-color: #1E1E1E;
+	width: 100%;
+	height: 1000px;
+	margin: 0 auto;
+	position: relative;
+	background: url("../images/page.png");
+	background-size: 15%;
+}
+.page{
+	position: relative;
+}
+.page:after{
+content: '';
+position: absolute;
+width: 100%;
+height: 1px;
+transform: scaleY(0.2);
+background-color: white;
+}
+/*1. 正文*/
+#main{
+	height: 510px;
+}
+
+/*1.1 头部*/
+#header{
+	height: 50px;
+	position: relative;
+}
+/*1.1.1 expand*/
+.expand{
+	position: absolute;
+	left: 0;
+	width: 50px;
+	height: 50px;
+	text-align: center;
+	position: absolute;
+}
+.expand p{	
+	line-height: 50px;
+}
+.expand img{
+	width: 35%;
+	height: 35%;
+	vertical-align: middle;
+}
+/*.1.1.2 options*/
+
+.logo{
+	position: absolute;
+	left: 50px;
+	display: inline-block;
+	width: 200px;
+	position: absolute;
+}
+#header p{
+	/*display: inline-block;*/
+	line-height: 50px;
+	color: white;
+	font-family: "楷体";
+	font-size: 20px;
+	font-weight: bold;
+}
+.logo img{
+	width: 20%;
+	height: 20%;
+	vertical-align: middle;
+}
+
+#header form{
+	position: absolute;
+	right: 450px;
+	width: 250px;
+
+	height: 50px;
+	/*width: 300px;*/
+	line-height: 50px;
+	background-color: rgba(180, 180, 180, 0.3);
+	text-align: center;
+	padding: 0 5px;
+	
+}
+#header table{
+	position: absolute;;
+	right:0;
+	width: 450px;
+	height: 50px;
+	line-height: 50px;
+	border: none;
+	border-collapse: collapse;
+}
+#ehader th{
+	display: inline-block;
+	margin:0 20px;
+	line-height: 50px;
+	border: none;
+}
+
+#header input{
+	line-height: 50px;
+	border: 0;
+	outline: none;
+}
+.text{
+	background-color: transparent;
+}
+.text::-webkit-input-placeholder{
+	color: #D6D6D6;
+}
+#header .button{
+	height: 30px;
+	width: 30px;
+	vertical-align: middle;
+	background: center center url("../images/search.gif") no-repeat;
+
+}
+#header a{
+	text-decoration: none;
+	color: white;
+	font-size: 14px;
+	font-weight: normal;
+}
+/*插入分界线*/
+#header:after{
+content: '';
+position: absolute;
+left: 50px;
+top: 0;
+width: 1px;
+height: 50px;
+transform: scaleX(0.2);
+background-color: white;
+}
+/*1.2 导航*/
+#nav{
+	height: 50px;
+}
+#nav a{
+	text-decoration: none;
+	line-height: 50px;
+	text-align: center;
+	color: white;
+	font-size: 14px;
+	font-weight: normal;
+}
+#nav table{
+	position: absolute;
+	left: 0;
+	width:750px;
+	height: 50px;
+	border-collapse: collapse;
+}
+#nav .login{
+	position: absolute;
+	right: 0;
+	width: 150px;
+	height: 50px;
+	background-color: #28B8D6;
+}
+/*2. 底脚*/
+#foot{
+	height: 140px;
+	background-color: rgba(130, 130, 130, 0.5);
+}
+.fix{
+	position: fixed;
+	width: 1em;
+	height: 100px;
+	right: 10px;
+	bottom: 300px;
+	background-color: #28B8D6;
+	/*letter-spacing: 50px;*/
+	padding: 15px;
+	text-align: center;
+	color: white;
+	font-size:14px;
+	font-weight: normal;
+}
+#foot table{
+	height: 140px;
+	width: 100%;
+	border-collapse: collapse;
+	border: none;
+}
+#foot th{
+	position: relative;
+	height: 140px;
+	width: 224px;
+	display: inline-block;
+}
+
+#foot th:after{
+	content: '';
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 1px;
+	height: 140px;
+	transform: scaleX(0.2);
+	background-color: white;
+}
+
+#foot a{
+	display: inline-block;
+	height: 140px;
+	padding: 20px 15px;
+	text-decoration: none;
+	color: #BABABA;
+	font-size: 14px;
+	font-weight: normal;
+	box-sizing: border-box;
+}
+#foot a:hover{
+	background-color: rgba(180, 180, 180, 0.5);
+}
+#foot h2{
+	font-size: 18px;
+	font-weight: bold;
+	color: white;
+}

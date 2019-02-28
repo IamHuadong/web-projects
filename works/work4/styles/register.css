@@ -1,0 +1,89 @@
+#main{
+	width: 500px;
+	margin: auto;
+	padding: 10px;
+	/*background-color: #AE9288;*/
+}
+
+#back{
+	text-decoration: none;
+	color: blue;
+	font-weight: bold;
+	text-align: left;
+}
+
+form{
+	margin: auto;
+	/*background-color: pink;*/
+}
+ul{
+	list-style-type: none;
+	margin: auto;
+}
+li{
+	display: block;
+	width: 500px;
+	height: 30px;
+	margin-top: 20px;
+	line-height: 30px;
+	/*background-color: green;*/
+	text-align: center;
+}
+strong{
+	width: 100px;
+	height: 30px;
+	float: left;
+	text-align: right;
+	line-height: ;
+	line-height: 30px;
+	/*background-color: blue;*/
+}
+
+.disp{
+	height: 30px;
+	width: 150px;
+	float: right;
+	line-height: 30px;
+	font-size: 14px;
+	text-align: left;
+}
+
+input{
+	float: left;
+	width: 200px;
+	height: 30px;
+	margin-left: 5px;
+	line-height: 30px;
+	box-sizing: border-box;
+	/*background-color: yellow;*/
+}
+form a{
+	width: 100px;
+	height: 30px;
+	text-decoration: none;
+	color: blue;
+	float: right;
+	font-size: 14px;
+}
+form .yzm{
+	height: 30px;
+}
+
+form .yzm:hover{
+	background-color: white;
+	color: #000;
+	cursor: pointer;
+}
+
+form .subm{
+	height: 30px;
+	width: 200px;
+	background-color: green;
+	color: white;
+	border: none;
+}
+
+form .subm:hover{
+	background-color: #1DE124;
+	cursor: pointer;
+}

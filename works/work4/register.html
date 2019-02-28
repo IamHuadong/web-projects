@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>注册</title>
+	<link rel="stylesheet" href="styles/register.css">
+</head>
+<body>
+	<div id="main">
+		<h3>已有账号，前去<a href="../work3/main.html" id="back">登录</a></h2>
+		<form action="#">
+			<ul>
+				<li>
+					<strong>用户名:</strong>
+					<input id="input_name" type="text" placeholder="6-12个字符" >
+					<div id="name" class="disp"></div>
+				</li>
+				<li>
+					<strong>昵称:</strong>
+					<input id="input_nickname" type="text" placeholder="中文/英文">
+					<div id="nickname" class="disp"></div>
+				</li>
+				<li>
+					<strong>密码:</strong>
+					<input id="input_pwd" type="password" placeholder="不少于6位">
+					<div id="pwd" class="disp"></div>
+				</li>
+				<li>
+					<strong>确认密码:</strong>
+					<input id="input_identifypwd" type="password" placeholder="请输入相同的密码">
+					<div id="identifypwd" class="disp"></div>
+				</li>
+				<li>
+					<strong>手机:</strong>
+					<input id="input_phonenumber" type="password" placeholder="请输入手机号">
+					<button class="yzm">获取验证码</button>
+					<div id="phonenumber" class="disp"></div>
+				</li>
+				<li>
+					<strong>验证码:</strong>
+					<input id="gotnumber" type="password" placeholder="手机验证码">
+					<div id="mess" class="disp"></div>
+				</li>
+				<li>
+					<button type="submit" class="subm">注册</button>
+					<a href="#" id="words">《注册协议》</a>
+				</li>
+			</ul>	
+		</form>
+	</div>
+	<script src="scripts/register.js"></script>
+</body>
+</html>

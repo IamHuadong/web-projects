@@ -1,0 +1,146 @@
+*{
+	padding: 0;
+	margin: 0;
+}
+#mallPage{
+	min-width: 1190px;
+	width: auto;
+	background-color: transparent;
+	display: block;
+}
+#head{
+	padding: 22px 0px;
+	height: 44px;
+	width: 1190px;
+	margin: auto;
+}
+
+#head img{
+	margin-top: 8px;
+	width: 190px;
+	border: 0;
+}
+
+#content{
+	position: relative;
+	width: 100%;
+	margin-bottom: 40px;
+	display: block;
+}
+
+#login{
+	display: block;
+	position: relative;
+	width: 100%;
+	background-color: rgb(248, 220, 222);
+}
+
+.inner{
+	display: block;
+	position: relative;
+	width: 1190px;
+	margin: auto;
+}
+
+.inner img{
+	display: block;
+	margin: auto ;
+	border: 0;
+}
+
+.inner a{
+	display: block;
+	position: absolute;
+	top: 80px;
+	left: 75px;
+	width: 630px;
+	height: 440px;
+	border: none;
+	outline: none ;
+	text-decoration: none;
+}
+
+#login_form{
+	display: block;
+	right: 265px;
+	position: absolute;
+	top: 91px;
+	width: 350px;
+	height: 400px;
+	background-color: white;
+}
+#container{
+	display: block;
+	margin: auto;
+}
+
+#login_form .text{
+	display: block;
+	width: 300px;
+}
+
+#login_form form{
+	margin: 20px auto;
+}
+
+
+#login_form input{
+	display: block;
+	width: 300px;
+	height: 40px;
+	margin: 20px auto;
+	box-sizing: border-box;
+}
+
+
+
+#container #denglubutton{
+	display: block;
+	width: 300px;
+	height: 40px;
+	margin: 20px auto;
+	box-sizing: border-box;                                     
+	background-color: #D72767;
+	color: white;
+	font-size: 18px;
+	letter-spacing: 4px;
+	border: none;
+	text-align: center;
+}
+#container #denglubutton:hover{
+	background-color: #DE2023;
+	cursor: pointer;
+}
+
+#login_form #remind{
+	padding-bottom: 0;
+	height: 18px;
+	line-height: 18px;
+	color: #3c3c3c;
+	font-weight: 700;
+	margin: 15px auto 0;
+}
+
+#login_form #disp{
+	height: 20px;
+	float: right;
+	color: red;
+	line-height: 20px;
+	font-size: 14px;
+}
+
+#login_form #options{
+	margin: auto;
+}
+
+#login_form #options a{
+	float: right;
+	color: #6B6B6B;
+	font-size: 14px;
+	margin: 0 10px;
+}
+
+#foot{
+	height: 200px;
+	background-color: none;
+}
