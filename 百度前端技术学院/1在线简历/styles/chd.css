@@ -6,6 +6,11 @@
 body{
 	background-color: #90CFCC;
 }
+#greeting{
+	position: absolute;
+	left: 30px;
+	top: 200px;
+}
 #main{
 	width: 700px;
 	height: 800px;

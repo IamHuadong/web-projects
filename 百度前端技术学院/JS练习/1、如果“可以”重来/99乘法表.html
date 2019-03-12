@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>9*9乘法表</title>
+	<style>
+		table{
+			margin: 0 auto;
+			border: 1px solid blue;
+			border-collapse: collapse;
+			background-color: green;
+		}
+	</style>
+</head>
+<body>
+	<table>
+		
+	</table>
+	<script>
+		var table = document.getElementsByTagName("table")[0];		
+		for(var i = 9; i > 0; i--){
+			// 创建新行，加入table
+			var newtr = document.createElement("tr");
+
+			table.appendChild(newtr);
+			// 读取新行
+			var tr = document.getElementsByTagName("tr")[9 - i];
+			for(var j = i; j < 10; j++){
+				// 创建新列，加入tr
+				var newtd = document.createElement("td");
+				// var node = document.createTextNode(i*j);
+				newtd.innerHTML = i*j;
+				newtd.style.cssText = "width:30px;background-color:pink;border:1px solid blue;text-align:center";
+				// newtd.appendChild(node);
+				tr.appendChild(newtd);
+				
+			}
+		}
+	</script>
+</body>
+
+</html>

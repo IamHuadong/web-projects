@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>二进制转换</title>
+	<style>
+		input{
+			width: 300px;
+		}
+	</style>
+</head>
+<body>
+	<input id="dec-number" type="number" placeholder="输入一个十进制非负整数">
+	<input id="bin-bit" type="number" placeholder="输入转化后二进制数字位数">
+	<button id="trans-btn">转化为二进制</button>
+	<p id="result">运算结果</p>
+	<script>
+		function dec2bin(decNumber){
+			if(decNumber < 0){
+				var dis = document.getElementById("result");
+				dis.innerHTML = "输入不能是负数";
+				dis.style.color = "red";
+			}
+			else{
+				var bnt = (decNumber).toString(2);//十进制转二进制
+				var in_length = Number(document.getElementById("bin-bit").value);
+				var width = bnt.length;
+				if(in_length < width){
+					console.log("输入宽度过小");
+				}
+				else if(in_length > width){
+					bnt = Array(in_length - width + 1).join("0") + bnt;//数字前加0
+				}
+				document.getElementById("result").innerHTML = "运算结果：" + bnt;	
+			}
+		}
+		document.getElementById("trans-btn").onclick = function(){
+				dec2bin(Number(document.getElementById("dec-number").value));
+		}	
+	</script>
+</body>
+</html>
