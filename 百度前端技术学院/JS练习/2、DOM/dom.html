@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">    
+    <title>IFE ECMAScript</title>
+</head>
+<body>        
+    <div id="wrapper">
+        <div id="news-top" class="section">
+            <h3>Some title</h3>
+            <div class="content">
+                <ul>
+                    <li><span>HTML</span><a href="">Some Link1</a></li>
+                    <li><span>JS</span><a class="active" href="">Some Link2</a></li>
+                    <li><span>CSS</span><a href="">Some Link3</a></li>
+                    <li><span>JS</span><a href="">Some Link4</a></li>
+                </ul>
+            </div>
+            <img src="">
+            <p class="">Some Text</p>
+        </div>
+        <div id="news-normal" class="section">
+            <h3>Some title 2</h3>
+            <div class="content">
+                <ul>
+                    <li><span>HTML</span><a href="">Some Link1</a></li>
+                    <li><span>HTML</span><a href="">Some Link2</a></li>
+                    <li><span>JS</span><a class="active" href="#">Some Link3</a></li>
+                    <li><span>CSS</span><a href="">Some Link4</a></li>
+                </ul>
+            </div>
+            <img src="">
+            <p class="">Some Text</p>
+        </div>      
+    </div>
+    <script>
+
+	// getAllListItem_jq();
+	// findAllHtmlSpanInOneSection_jq("#news-normal");
+	// findListItem_jq("#news-normal","JS");
+	getActiveLinkContent_jq("#news-normal");
+
+	
+
+    function getAllListItem() {
+        // 返回页面中所有li标签
+        var lis = document.getElementsByTagName("li");
+        console.log(lis);
+        return lis;
+    }
+	function getAllListItem_jq(){
+		var lis = document.querySelectorAll("li");
+        console.log(lis);
+        return lis;
+	}
+
+
+    function findAllHtmlSpanInOneSection(sectionId) {
+        // 返回某个section下所有span中内容为HTML的span标签
+        var childs = document.getElementById(sectionId);
+        var spans = childs.getElementsByTagName("span");
+        var f=[];
+        for(var i=0; i<spans.length;i++){
+        	var c = spans[i];
+        	if(c.innerHTML == "HTML"){
+        		f.push(c);
+        	}
+        }
+
+        console.log(f);
+        return f;
+    }
+    function findAllHtmlSpanInOneSection_jq(sectionId) {
+        var childs = document.querySelector(sectionId);
+        var spans = childs.querySelectorAll("span");
+        var f=[];
+        for(var i=0; i<spans.length;i++){
+        	var c = spans[i];
+        	if(c.innerHTML == "HTML"){
+        		f.push(c);
+        	}
+        }
+
+        console.log(f);
+        return f;
+    }
+
+    function findListItem(sectionId, spanCont) {
+        // 返回某个section下，所有所包含span内容为spanCont的LI标签
+        var childs = document.getElementById(sectionId);
+        var spans = childs.getElementsByTagName("span");
+        var f =[];
+        for(var i=0; i<spans.length; i++){
+        	if(spans[i].innerHTML == spanCont){
+        		lis = spans[i].parentNode;
+        		f.push(lis);
+        	}
+        }
+        
+        console.log(f);
+        return f;
+    }
+    function findListItem_jq(sectionId, spanCont) {
+        var childs = document.querySelector(sectionId);
+        var spans = childs.querySelectorAll("li span");
+        var f =[];
+        for(var i=0; i<spans.length; i++){
+        	if(spans[i].innerHTML == spanCont){
+        		lis = spans[i].parentNode;
+        		f.push(lis);
+        	}
+        }
+        
+        console.log(f);
+        return f;
+    }
+
+
+    function getActiveLinkContent(sectionId) {
+        // 返回某个section下，class为active的链接中包含的文字内容
+        var childs = document.getElementById(sectionId);
+
+        var actives = childs.getElementsByClassName("active");
+        var f=[];
+        for(var i=0; i<actives.length;i++){
+        	f.push(actives[i].innerHTML);
+        }
+        console.log(f);
+        return f;
+    }
+    function getActiveLinkContent_jq(sectionId) {
+        var childs = document.querySelector(sectionId);
+
+        var actives = childs.querySelector("a.active");
+        // var f=[];
+        // for(var i=0; i<actives.length;i++){
+        // 	f.push(actives[i].innerHTML);
+        // }
+        // console.log(f);
+        // return f;
+        console.log(actives.innerHTML);
+        return actives.innerHTML;
+    }
+
+    </script>
+</body>
+</html>
