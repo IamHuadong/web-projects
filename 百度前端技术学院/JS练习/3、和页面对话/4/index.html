@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		div{
+			width: 480px;
+			height: 480px;
+			background-image: url("test.jpg");
+			background-repeat: no-repeat;
+			background-color: blue;
+		}
+	</style>
+</head>
+<body>
+	<div></div>
+	<script>
+		var ypx = 0;
+		var flag = 0;
+		setInterval(function(){
+			var div = document.getElementsByTagName("div")[0];
+			div.style.backgroundPosition ="0" + ypx+"px";
+			if(flag == 0){
+				ypx = ypx - 480;
+				if(ypx == -7680){
+					flag = 1;
+				}
+			}
+			else if(flag == 1){
+				ypx = ypx + 480;
+				if(ypx == 0){
+					flag = 0;
+				}
+			}
+		},100)
+		
+	</script>
+</body>
+
+</html>
