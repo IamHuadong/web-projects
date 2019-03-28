@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>数组转对象树</title>
+</head>
+<body>
+	<script>
+		var menuArr = [
+		    [1, "Area1", -1],
+		    [2, "Area2", -1],
+		    [3, "Area1-1", 1],
+		    [4, "Area1-2", 1],
+		    [5, "Area2-1", 2],
+		    [6, "Area2-2", 2],
+		    [7, "Area1-2-3", 4],
+		    [8, "Area2-2-1", 6],
+		];
+
+		var last = trans(menuArr);
+		console.log(last);
+
+		function trans(arr){
+			//第一步，先转换成需要的对象形式
+			var newmenu = {};
+			for (var i =0; i < arr.length; i++) {
+				var curobj = {};
+				curobj.name = arr[i][1];
+				newmenu[i] = curobj;
+			}
+			//第二步，再转换成树目录
+			var objs = {};
+			var midobj = {};
+			for(var i=arr.length-1;i>=0;i--){
+				var id = arr[i][0];
+				var pid = arr[i][2];
+				//父级加入子级
+				if(midobj[pid]){
+					midobj[pid][id] = {};
+					midobj[pid][id] = newmenu[i];
+				}
+				else{
+					midobj[pid] = {};//将当前菜单压入主菜单
+					midobj[pid][id] = {};
+					midobj[pid][id] = newmenu[i];
+				}
+				//将所有子级加入父级中的submenu位置
+				if(midobj[id]){
+					newmenu[i].subMenu = midobj[id];
+					delete midobj[id];
+				}
+					
+			}
+			return midobj[-1];
+		}
+				
+	</script>
+</body>
+</html>

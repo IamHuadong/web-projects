@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        button{
+            display: block;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <label>Number A:<input id="radio-a" type="radio" name="math-obj" value="a"></label><input id="num-a" type="text">
+        <label>Number B:<input id="radio-b" type="radio" name="math-obj" value="b"></label><input id="num-b" type="text">
+    </div>
+    <div>
+        <button>判断当前选中的输入框输入内容是否为数字</button>
+        <button>把 A 四舍五入为 B 个小数位数的数字</button>
+        <button>当前选中数字的绝对值</button>
+        <button>对当前选中的数字进行上舍入</button>
+        <button>对当前选中的数字进行下舍入</button>
+        <button>把当前选中的数字四舍五入为最接近的整数</button>
+        <button>返回 A 和 B 中的最高值</button>
+        <button>返回 A 和 B 中的最低值</button>        
+    </div>
+    <p id="result"></p>
+    <script>
+        var a = document.getElementById("radio-a");
+        var b = document.getElementById("radio-b");
+        var num_a = document.getElementById("num-a");
+        var num_b = document.getElementById("num-b");
+        
+        var btns = document.getElementsByTagName("button");
+        // 判断是否是数字
+        btns[0].onclick = function(){
+            if(a.checked){
+                judge(num_a.value);
+            }
+            else if(b.checked){
+                judge(num_b.value);
+            }
+            else{
+                document.getElementById("result").innerHTML = "请先选择";
+            }
+        }
+  
+        function judge(value){
+            if(value==""){
+                document.getElementById("result").innerHTML = "请输入数字";
+            }
+            else{
+                if(isNaN(value)){
+                    document.getElementById("result").innerHTML = "不是数字";
+                }
+                else{
+                    document.getElementById("result").innerHTML = "是数字";
+                }
+            }   
+        }
+         
+        var test = document.getElementsByTagName("div")[1];
+        test.onclick = function(event){
+            if(isNaN(num_a.value) || isNaN(num_b.value) || num_a.value=="" || num_b.value==""){
+                console.log("请输入数字");
+            }
+            else{
+                switch(event.target){
+                    case btns[1]: // 将A四舍五入B位小数
+                        document.getElementById("result").innerHTML = Number(num_a.value).toFixed(Number(num_b.value));
+                        break;
+                    case btns[2]: //当前选中数字的绝对值
+                        var choosed;
+                        if(!a.checked && !b.checked){
+                            document.getElementById("result").innerHTML = "请选择";
+                        }
+                        else{
+                            if(a.checked){
+                                choosed = Number(num_a.value);
+                            }
+                            else if(b.checked){
+                                choosed = Number(num_b.value);
+                            }
+                            document.getElementById("result").innerHTML = Math.abs(choosed);
+                        }
+                        break;
+                    case btns[3]: //当前选中数字上舎入
+                        var choosed;
+                        if(!a.checked && !b.checked){
+                            document.getElementById("result").innerHTML = "请选择";
+                        }
+                        else{
+                            if(a.checked){
+                                choosed = Number(num_a.value);
+                            }
+                            else if(b.checked){
+                                choosed = Number(num_b.value);
+                            }
+                            document.getElementById("result").innerHTML = Math.ceil(choosed);
+                        }
+                        break;
+                    case btns[4]: //当前选中数字下舎入
+                        var choosed;
+                        if(!a.checked && !b.checked){
+                            document.getElementById("result").innerHTML = "请选择";
+                        }
+                        else{
+                            if(a.checked){
+                                choosed = Number(num_a.value);
+                            }
+                            else if(b.checked){
+                                choosed = Number(num_b.value);
+                            }
+                            document.getElementById("result").innerHTML = Math.floor(choosed);
+                        }
+                        break;
+                    case btns[5]: //当前选中数字四舍五入
+                        var choosed;
+                        if(!a.checked && !b.checked){
+                            document.getElementById("result").innerHTML = "请选择";
+                        }
+                        else{
+                            if(a.checked){
+                                choosed = Number(num_a.value);
+                            }
+                            else if(b.checked){
+                                choosed = Number(num_b.value);
+                            }
+                            document.getElementById("result").innerHTML = Math.round(choosed);
+                        }
+                        break;
+                    case btns[6]: //返回A,B最大值
+                        document.getElementById("result").innerHTML = Math.max(Number(num_a.value),Number(num_b.value));
+                        break;
+                    case btns[7]: //返回A,B最小值
+                        document.getElementById("result").innerHTML = Math.min(Number(num_a.value),Number(num_b.value));
+                    break;
+                    default: break;
+                }
+            }
+           
+        }   
+    </script>
+</body>
+</html>

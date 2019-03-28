@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>数据结构转换</title>
+</head>
+<body>
+	<script>
+		var scoreObject = {
+		    "Tony": {
+		        "Math": 95,
+		        "English": 79,
+		        "Music": 68
+		    }, 
+		    "Simon": {
+		        "Math": 100,
+		        "English": 95,
+		        "Music": 98
+		    }, 
+		    "Annie": {
+		        "Math": 54,
+		        "English": 65,
+		        "Music": 88
+		    }
+		}
+
+		var arr = new Array();
+		
+		for(j in scoreObject){//访问对象内容key
+			var newarr = new Array();
+			newarr.push(j);//依次将每个key都加入到一个新arr
+			
+			for(k in scoreObject[j]){
+				//依次将每个key的内容也加入新arr
+				newarr.push(scoreObject[j][k]);
+			}
+			arr.push(newarr);//依次将新arr加入总arr	
+		}
+		console.log(arr);
+
+	</script>
+</body>
+</html>
