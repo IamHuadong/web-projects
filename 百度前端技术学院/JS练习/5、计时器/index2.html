@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>时钟</title>
+</head>
+<body>
+	<div style="display:block;width: 400px; margin:50px auto;">txt</div>
+	<div style="display:block;width: 400px; margin:50px auto;">txt</div>
+	<script>
+		
+		// timetxt.innerHTML = settime();
+		// console.log(typeof settime());
+		settime();
+		//时间显示+更新
+		function settime(){
+			var timetxt0 = document.getElementsByTagName("div")[0];
+			var timetxt1 = document.getElementsByTagName("div")[1];
+			var d = new Date();//当前时间
+			var year= d.getFullYear();
+			var month = d.getMonth()+1;
+			var date = d.getDate();
+			var hour = d.getHours();
+			var minute = d.getMinutes();
+			var second = d.getSeconds();
+			timetxt0.innerHTML = packForm0(year,month,date,hour,minute,second);
+			timetxt1.innerHTML = packForm(year,month,date,hour,minute,second);
+			setTimeout(settime,1000);
+			d.setSeconds(d.getSeconds()+1);
+		}
+		
+
+		//根据日期返回星期
+		function myDay1(year, month, date){
+			var dd = new Date();
+			dd.setFullYear(year, month-1, date);
+			var ch = dd.getDay();
+			switch(ch){
+				case 0: ch = 'Sunday';break;
+				case 1: ch = 'Monday';break;
+				case 2: ch = 'Tuesday';break;
+				case 3: ch = 'Wednesday';break;
+				case 4: ch = 'Thursday';break;
+				case 5: ch = 'Friday';break;
+				case 6: ch = 'Saturday';break;
+				default: break;
+			}
+			return ch;
+		}
+		function myDay0(year, month, date){
+			var dd = new Date();
+			dd.setFullYear(year, month-1, date);
+			var ch = dd.getDay();
+			switch(ch){
+				case 0: ch = '天';break;
+				case 1: ch = '一';break;
+				case 2: ch = '二';break;
+				case 3: ch = '三';break;
+				case 4: ch = '四';break;
+				case 5: ch = '五';break;
+				case 6: ch = '六';break;
+				default: break;
+			}
+			return ch;
+		}
+		//补0
+		function plusZero(num){
+			if(num/10 <1){
+				num = '0' + num;
+			}
+			return num;
+		}
+		//格式包装
+		function packForm(year,month,date,hour,minute,second){
+			var mm;
+			if(hour>0 && hour <13){
+				mm='AM';
+			}
+			else{
+				mm='PM';
+				if(hour==0){
+					hour=24;
+				}
+				hour=hour-12;
+			}
+			var day = myDay1(year,month,date);
+			var mymonth = plusZero(month);
+			var mydate = plusZero(date);
+			var myhour = plusZero(hour);
+			var myminute = plusZero(minute);
+			var mysecond = plusZero(second);
+			return year+'-'+mymonth+'-'+mydate+ ' ' +day+' '+myhour+':'+myminute+':'+mysecond+ ' ' +mm;
+		}
+		function packForm0(year,month,date,hour,minute,second){
+			var day = myDay0(year,month,date);
+			var mymonth = plusZero(month);
+			var mydate = plusZero(date);
+			var myhour = plusZero(hour);
+			var myminute = plusZero(minute);
+			var mysecond = plusZero(second);
+			return year+'年'+mymonth+'月'+mydate+ '日' + '星期' + day+' '+myhour+':'+myminute+':'+mysecond;
+		}
+
+	</script>
+</body>
+</html>
