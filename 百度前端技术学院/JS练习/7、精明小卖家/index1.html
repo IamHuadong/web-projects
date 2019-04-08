@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>小卖家</title>
+	<style>
+		table{
+			margin: 20px;
+			border: black solid 1px;
+			border-collapse: collapse;
+		}
+		tr{
+			border: black solid 1px;
+		}
+		th{
+			text-align: center;
+			border: black solid 1px;
+		}
+		td{
+			text-align: center;
+			border: black solid 1px;
+		}
+	</style>
+</head>
+<body>
+	<div id="selects">
+		商品：<select name="" id="product-select">
+			<option value="手机">手机</option>
+			<option value="笔记本">笔记本</option>
+			<option value="智能音箱">智能音箱</option>
+		</select>
+		地区：<select name="" id="region-select">
+			<option value="华东">华东</option>
+			<option value="华南">华南</option>
+			<option value="华北">华北</option>
+		</select>
+	</div>
+	<div id="table-wrapper"><table></table></div>
+	<script src="ife31data.js"></script>
+	<script>
+		var selects = document.getElementById('selects');
+		updateTable(selectData());//初始化显示
+		//选择改变事件
+		selects.onchange = function(){
+			//返回选择数据，表格更新
+			updateTable(selectData());
+
+		}
+		//根据选择获取数据
+		function selectData(){
+			//商品
+			var productSelect = document.getElementById('product-select');
+			var productIndex = productSelect.selectedIndex;
+			var productOption = productSelect.options[productIndex];
+			//地区
+			var regionSelect = document.getElementById('region-select');
+			var regionIndex = regionSelect.selectedIndex;
+			var regionOption = regionSelect.options[regionIndex];
+			//遍历选择的数据
+			for(i in sourceData){
+				if(sourceData[i].product==productOption.value && sourceData[i].region==regionOption.value){
+					return sourceData[i];
+				}
+			}
+		}
+		//渲染表格
+		function updateTable(data){
+			var tableWrapper = document.getElementById('table-wrapper');
+			//如果table存在就删除，新建
+			if(tableWrapper.childNodes[0]){
+				tableWrapper.childNodes[0].remove();
+			}
+			//新建table
+			var frag = document.createDocumentFragment();
+			var table = document.createElement('table');
+			//第1行
+			var tr1 = document.createElement('tr');
+			for(var i=1;i<15;i++){
+				var th = document.createElement('th');
+				if(i==1){
+					th.innerHTML = '商品';
+				}
+				if(i==2){
+					th.innerHTML = '地区';
+				}
+				if(i>2){
+					th.innerHTML = (i-2) + '月';
+				}
+				tr1.appendChild(th);
+			}
+			//第2行
+			var tr2 = document.createElement('tr');
+			for(var j=1;j<15;j++){
+				var td = document.createElement('td');
+				if(j==1){
+					td.innerHTML = data.product;
+				}
+				if(j==2){
+					td.innerHTML = data.region;
+				}
+				if(j>2){
+					td.innerHTML = data.sale[j-3];
+				}
+				tr2.appendChild(td);
+			}
+			//加入document
+			table.appendChild(tr1);
+			table.appendChild(tr2);
+			frag.appendChild(table);
+			tableWrapper.appendChild(frag);
+		}
+	</script>
+</body>
+</html>

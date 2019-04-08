@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>小卖家多选</title>
+	<style>
+		table{
+			margin: 20px;
+			border: black solid 1px;
+			border-collapse: collapse;
+		}
+		tr{
+			border: black solid 1px;
+		}
+		th{
+			text-align: center;
+			border: black solid 1px;
+		}
+		td{
+			text-align: center;
+			border: black solid 1px;
+		}
+	</style>
+</head>
+<body>
+	<div id="selection">
+		<div id="product-radio-wrapper">
+		商品：
+		<input type="checkbox" checked='true' value="手机">手机
+		<input type="checkbox" value="笔记本">笔记本
+		<input type="checkbox" value="智能音箱">智能音箱
+		<input type="checkbox" value="全选">全选
+		</div>
+		<div id="region-radio-wrapper">
+			地区：
+			<input type="checkbox" checked='true' value="华东">华东
+			<input type="checkbox" value="华北">华北
+			<input type="checkbox" value="华南">华南
+			<input type="checkbox" value="全选">全选
+		</div>
+	</div>
+	
+	<div id="table-wrapper"></div>
+	<!-- 加载js -->
+	<script src="ife31data.js"></script>
+	<script src="app.js"></script>
+	<script src="table.js"></script>
+	<script src="checkbox.js"></script>
+	<script>
+		var selection = document.getElementById('selection');
+		var selectProduct = document.getElementById('product-radio-wrapper');
+		var selectRegion = document.getElementById('region-radio-wrapper');
+		//初始化
+		tableInit([['手机'],['华东']]);
+
+		/**************************************************/
+		//选中事件
+		selection.onclick = function(){
+			//初始化
+			tableInit([['手机'],['华东']]);
+			//生成新表格
+			createNewTable(sourceData);
+
+			console.log(tableInfo());
+		}
+		//进行全选处理
+		//商品事件
+		selectProduct.onclick = function(event){
+			logic(event,"product-radio-wrapper");//选中逻辑事件
+		}
+		//地区事件
+		selectRegion.onclick = function(event){
+			logic(event,"region-radio-wrapper");//选中逻辑事件
+		}
+		/********************************************/
+	</script>
+</body>
+</html>
