@@ -1,0 +1,44 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>小卖家2</title>
+	<style>
+		div{
+			display: inline;
+			/*float:left;*/
+		}
+		canvas{
+			background-color: gray;
+		}
+	</style>
+</head>
+<body>
+	<div id='hist'></div>
+	<div id='lineChart'></div>
+	<!-- 嵌入函数文件 -->
+	<script src="../1table/ife31data.js"></script>
+	<script src="bar.js"></script>
+	<script src="line.js"></script>
+	<script>
+		var data=sourceData[0].sale;//销售数据
+		//数据归一化，折算像素
+		var dataPx=[];
+		//1月数据最高值
+		var dataMax = Math.max.apply(Math,data);
+		for(i in data){
+			dataPx.push(Math.round((data[i]/dataMax)*200));
+		}
+		//在页面加入柱状图
+		var hist= histogram(dataPx,data);//柱状图
+		var histDiv=document.getElementById('hist');
+		histDiv.appendChild(hist);
+		//在页面加入柱状图
+		var lineChart = lineChart(dataPx,data);//折线图
+		var lineDiv=document.getElementById('lineChart');
+		lineDiv.appendChild(lineChart);
+
+	</script>
+</body>	
+</html>

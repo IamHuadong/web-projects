@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>hsh</title>
+</head>
+<body>
+	<button id="a">A</button>
+	<button id="b">B</button>
+	<button id="c">C</button>
+
+	<button id="d">D</button>
+	<button id="e">E</button>
+	<button id="f">F</button>
+
+
+	<div id="contABC" style='background-color: pink;'></div>
+	<div id="contDEF" style='background-color: yellow;'></div>
+
+	<script>
+		// console.log(location.href);
+
+		var state={
+			'href':'file:///C:/Users/cai/Desktop/百度前端技术学院/JS练习/7、精明小卖家/5pushState/index4.html'
+		}
+
+		
+		var body=document.getElementsByTagName('body')[0];
+		//点击事件，更新href
+		body.onclick=function(event){
+			var id=event.target.id;
+			history.replaceState(null,null,state.href+'?'+id);
+			draw();
+		}
+		//渲染函数
+		function draw(){
+			var href=location.href;
+			var id=href[href.length-1];
+			var stra='abc';
+			var strb='def';
+			for(i in stra){
+				if(id==stra[i]){
+					var conta=document.getElementById('contABC');
+					conta.innerHTML=id;
+				}
+			}
+			for(i in strb){
+				if(id==strb[i]){
+					var contb=document.getElementById('contDEF');
+					contb.innerHTML=id;
+				}
+			}
+			console.log(id);
+		}
+
+		//先执行一次渲染函数
+		draw();
+	</script>
+</body>
+</html>
+
+

@@ -90,5 +90,4 @@ function cellsCombein(rowStart,rowEnd,Length){
 		var td2=tr2.getElementsByTagName("td")[0];
 		td2.remove();
 	}
-	
 }

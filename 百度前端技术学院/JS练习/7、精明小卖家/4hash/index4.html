@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>hsh</title>
+</head>
+<body>
+	<button id="a">A</button>
+	<button id="b">B</button>
+	<button id="c">C</button>
+
+	<button id="d">D</button>
+	<button id="e">E</button>
+	<button id="f">F</button>
+
+
+	<div id="contABC" style='background-color: pink;'></div>
+	<div id="contDEF" style='background-color: yellow;'></div>
+
+	<script>
+		
+
+		var body=document.getElementsByTagName('body')[0];
+		//点击事件，更新hash
+		body.onclick=function(event){
+			var ids=getHash();
+			//获取目前的hash，ids:ids[0]--abc,ids[1]--def
+			if(ids.length==2){
+				var upId=ids[0];
+				var downId=ids[1];
+				var nowId=event.target.id;
+				if(nowId=='a' || nowId=='b' || nowId=='c'){
+					upId=nowId;
+				}
+				else{
+					downId=nowId;
+				}
+			}
+			//初始hash只有1个长度时
+			else{
+				if(ids=='a' || ids=='b' || ids=='c'){
+					var upId=ids;
+					var downId=event.target.id;
+				}
+				if(ids=='d' || ids=='e' || ids=='f'){
+					var upId=event.target.id;
+					var downId=ids;
+				}
+
+			}
+			location.hash=upId+downId;
+		}
+		//解析hash
+		function getHash(){
+			var hashIds=location.hash;
+			var ids=hashIds.slice(1);
+			return ids;
+		}
+		//渲染函数
+		function draw(){
+			var ids=getHash();
+			if(ids.length==2){
+				var buttonUp=document.getElementById(ids[0]);
+				var contABC=document.getElementById('contABC');
+				contABC.innerHTML=buttonUp.innerHTML;
+
+				var buttonDown=document.getElementById(ids[1]);
+				var contDEF=document.getElementById('contDEF');
+				contDEF.innerHTML=buttonDown.innerHTML;
+			}
+			else{
+				if(ids=='a' || ids=='b' || ids=='c'){
+					var buttonUp=document.getElementById(ids);
+					var contABC=document.getElementById('contABC');
+					contABC.innerHTML=buttonUp.innerHTML;
+				}
+				if(ids=='d' || ids=='e' || ids=='f'){
+					var buttonDown=document.getElementById(ids);
+					var contDEF=document.getElementById('contDEF');
+					contDEF.innerHTML=buttonDown.innerHTML;
+				}
+			}
+		}
+		//hash事件
+		window.onhashchange=function(){
+			draw();
+			console.log('ok');
+		}
+		//先执行一次渲染函数
+		draw();
+	</script>
+</body>
+</html>
+
+

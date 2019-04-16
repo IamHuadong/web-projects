@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>小卖家测试</title>
+</head>
+<body>
+	<div id='hist'></div>
+	<div id='lineChart'></div>
+	
+	<div id="table-wrapper"></div>
+	<!-- 加载js -->
+	<script src="1table/ife31data.js"></script>
+
+	<script src="2pillar/manyLines.js"></script>
+	<script src="2pillar/dataProcess.js"></script>
+	<script>
+		var lineDiv=document.getElementById('lineChart');
+		if(lineDiv.childNodes[0]){
+			lineDiv.childNodes[0].remove();
+		}
+		var lines=linesPlot(sourceData);
+		//加入html
+		lineDiv.appendChild(lines);
+		
+		
+	</script>
+</body>
+</html>

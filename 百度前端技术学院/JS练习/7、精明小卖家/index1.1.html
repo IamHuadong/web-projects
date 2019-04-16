@@ -4,6 +4,15 @@
 	<meta charset="UTF-8">
 	<title>小卖家多选</title>
 	<style>
+		#hist{
+			display: inline;
+		}
+		#lineChart{
+			display: inline;
+		}
+		#selection{
+			display: block;
+		}
 		table{
 			margin: 20px;
 			border: black solid 1px;
@@ -23,6 +32,9 @@
 	</style>
 </head>
 <body>
+	<div id='hist'></div>
+	<div id='lineChart'></div>
+
 	<div id="selection">
 		<div id="product-radio-wrapper">
 		商品：
@@ -39,29 +51,150 @@
 			<input type="checkbox" value="全选">全选
 		</div>
 	</div>
-	
+	<h3>双击修改</h3>
 	<div id="table-wrapper"></div>
+	<button id='save'>保存</button>
 	<!-- 加载js -->
-	<script src="ife31data.js"></script>
-	<script src="app.js"></script>
-	<script src="table.js"></script>
-	<script src="checkbox.js"></script>
+	<script src="1table/ife31data.js"></script>
+	<script src="1table/app.js"></script>
+	<script src="1table/table.js"></script>
+	<script src="1table/checkbox.js"></script>
+
+	<script src="2pillar/bar.js"></script>
+	<script src="2pillar/line.js"></script>
+	<script src="2pillar/manyLines.js"></script>
+	<script src="2pillar/dataProcess.js"></script>
+
+	<script src="3edit/localStorage.js"></script>
+
+	<script src='4hash/hash.js'></script>
+
 	<script>
 		var selection = document.getElementById('selection');
 		var selectProduct = document.getElementById('product-radio-wrapper');
 		var selectRegion = document.getElementById('region-radio-wrapper');
-		//初始化
-		tableInit([['手机'],['华东']]);
+		//表格初始化
+		// tableInit([['手机'],['华东']]);
+		//绘制图表
+		if(localStorage.length!=0){
+			var sourceData=lsToObj();
+		}
+		else{
+			//localStorage初始化
+			localStorageInit(sData);
+			var sourceData=sData;
+		}
+		var data=sourceData[0];
+		var [hist,lineC]=plotChart(data,'green');
+		//加入html
+		var histDiv=document.getElementById('hist');
+		histDiv.appendChild(hist);
 
+		var lineDiv=document.getElementById('lineChart');
+		var lines=linesPlot(sourceData);
+		//加入html
+		lineDiv.appendChild(lines);
+		
 		/**************************************************/
-		//选中事件
+		//表格事件
+		var tableDiv=document.getElementById('table-wrapper');
+		var table=tableDiv;
+		tableDiv.onmouseout = function(event){
+			var td=event.target;
+			var tr=td.parentNode;
+			var trNumber=tr.id;
+			if(Number(trNumber)<=8 && Number(trNumber)>=0 && trNumber.length==1)
+			{
+				tr.style.backgroundColor='white';
+			}
+			if(lineDiv.childNodes[0]){
+				lineDiv.childNodes[0].remove();
+			}
+			var lines=linesPlot(lsToObj());
+			//加入html
+			lineDiv.appendChild(lines);
+
+		}
+		tableDiv.onmouseover = function(event){
+			var td=event.target;
+			var tr=td.parentNode;
+			var trNumber=tr.id;
+			if(Number(trNumber)<=8 && Number(trNumber)>=0 && trNumber.length==1)
+			{
+				var data=lsToObj()[Number(trNumber)];
+				if(histDiv.childNodes[0]){
+					histDiv.childNodes[0].remove();
+				}
+				if(lineDiv.childNodes[0]){
+					lineDiv.childNodes[0].remove();
+				}
+				//绘图颜色
+				var colors=['green','blue','purple','red','brown','violet','orange','cyan','coral'];
+				tr.style.backgroundColor=colors[Number(trNumber)];
+				//绘制图表
+				var [hist,lineC]=plotChart(data,colors[Number(trNumber)]);
+				//加入html
+				histDiv.appendChild(hist);
+				lineDiv.appendChild(lineC);
+			}
+			//双击,修改
+			td.ondblclick=function(){
+				//是数字才能编辑
+				if(!isNaN(td.innerHTML)){
+					//新建input编辑
+					var newInput = document.createElement('input');
+					newInput.type='text';
+					newInput.value=td.innerHTML;
+					newInput.style='color:red;text-align:center;width:30px;';
+					td.innerHTML=null;
+					//加入td
+					td.appendChild(newInput);
+					newInput.focus();//获取焦点
+					//失去焦点,去掉input
+					newInput.onblur=function(){
+						if(isNaN(newInput.value)){
+							alert('不是数字');
+						}
+						else{
+							//去掉input
+							td.innerHTML=newInput.value;
+							newInput.remove();
+						}
+						
+					}
+				}
+			}
+		}
+		//保存按钮
+		var save=document.getElementById('save');
+		save.onclick=function(){
+			for(var i=0;i<9;i++){
+				var tr=document.getElementById(i);
+				if(tr==null)break;
+				else{
+					var tds=tr.getElementsByTagName('td');
+					//保存新表格内容
+					var newSale=[];
+					for(var j=0;j<tds.length;j++){
+						if(!isNaN(tds[j].innerHTML)){
+							newSale.push(tds[j].innerHTML);
+						}
+					}
+					localStorage.setItem(i,newSale);//保存
+					
+				}
+			}
+		}
+		
+		// 选中事件
 		selection.onclick = function(){
 			//初始化
 			tableInit([['手机'],['华东']]);
 			//生成新表格
-			createNewTable(sourceData);
-
-			console.log(tableInfo());
+			createNewTable(lsToObj());
+			//更新hash
+			var trId=tableInfo();
+			location.hash=trId;
 		}
 		//进行全选处理
 		//商品事件
@@ -73,6 +206,24 @@
 			logic(event,"region-radio-wrapper");//选中逻辑事件
 		}
 		/********************************************/
+		//画图
+		function plotChart(data,color){
+			data=data.sale;
+			//数据归一化，折算像素
+			var dataPx=[];
+			//1月数据最高值
+			var dataMax = Math.max.apply(Math,data);
+			for(i in data){
+				dataPx.push(Math.round((data[i]/dataMax)*200));
+			}
+			//在页面加入柱状图
+			var hist= histogram(dataPx,data,color);
+			//在页面加入折线图
+			var lineC = lineChart(dataPx,data,color);
+			return [hist,lineC];
+		}
+		//先执行一次渲染函数
+		draw(sourceData);
 	</script>
 </body>
 </html>
