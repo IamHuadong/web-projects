@@ -1,0 +1,59 @@
+*{
+	margin: 0;
+	padding: 0;
+}
+#container{
+	position: relative;
+	height: 700px;
+	width: 1000px;
+	background-color: #588;
+	margin: auto;
+}
+#container img{
+	max-width: 200px;
+	max-height: 200px;
+}
+#cashs{
+	display: block;
+	width: 200px;
+	margin: auto;
+	background-color: white;
+}
+.pos{
+	position: absolute;
+}
+
+#cook{
+	top: 150px;
+	left:0;
+}
+#waiter{
+	top: 150px;
+	left: 400px;
+}
+
+#customer{
+	top: 150px;
+	right: 0;
+} 
+#cookWords{
+	color: white;
+}
+#waiterWords{
+	color: white;
+}
+#customerWords{
+	color: white;
+}
+ul{
+	list-style-type: none;
+	border: 1px solid black;
+	border-collapse: collapse;
+}
+li{
+	border: 1px solid black;
+}
+#customers{
+	top: 450px;
+	left:200;
+}

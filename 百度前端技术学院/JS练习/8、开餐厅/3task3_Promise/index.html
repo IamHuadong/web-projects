@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>开家餐厅3</title>
+	<link rel="stylesheet" href="styles/mystyle.css">
+</head>
+<body>
+	<div id='container'>
+		<h2 id='cashs'>
+			现金：&yen;<span id='cashDis'>1000000</span>
+		</h2>
+		<div id='cook' class="pos">
+			<p id='cookWords'>厨师</p>
+			<img src='images/cook.gif'></img>
+			<ul id='cookLists'></ul>
+		</div>
+		<div id='waiter' class="pos">
+			<p id='waiterWords'>服务员</p>
+			<img src='images/waiter.gif'></img>
+		</div>
+		<div id='customer' class="pos">
+			<p id='customerWords'>顾客</p>
+			<img src='images/customer.gif'></img>
+			<ul id='customerLists'></ul>
+		</div>
+		<div id='customers'  class="pos"></div>
+	</div>
+	<script src='move.js'></script>
+	<script src='es5.js'></script>
+	<script src='factory.js'></script>
+	<script src='orders.js'></script>
+	<script>
+		//新建饭店
+		var restaurant1=new Restaurant({
+			cash:1000000,
+			seats:1,
+			staff:[],
+			menu: new Menu()
+		});
+		Object.defineProperty(restaurant1,'cash',{
+			get:function(){
+				return cash;
+			},
+			set:function(newValue){
+				cash=newValue;
+				var cashDis=document.getElementById('cashDis');
+				cashDis.innerHTML=newValue;
+			}
+		});
+		restaurant1.cash=1000000;
+		var fct=new FactoryProfession();
+		//新服务员
+		var waiter1=fct.createPro('waiter','lisa',5000);
+		//新厨师
+		var cook1=fct.createPro('cook','lili',7000);
+		//饭店招聘
+		restaurant1.hire(waiter1);
+		restaurant1.hire(cook1);
+		//新顾客
+		var customers=[];
+		for(var i=0;i<3;i++){
+			var customer1=new Customer();
+			customer1.name=i;
+			customers.push(customer1);
+		}	
+		//顾客列表
+		function cusList(customers){
+			var cs=document.getElementById('customers');
+			var ul=document.createElement('ul');
+			cs.appendChild(ul);
+			var frag=document.createDocumentFragment();
+			for(var i=0;i<customers.length;i++){
+				var li=document.createElement('li');
+				li.innerHTML=customers[i].name;
+				frag.appendChild(li);
+			}
+			ul.appendChild(frag);
+
+
+		}
+		cusList(customers);
+
+		//新菜单
+		var menu=new Menu();
+		//服务顾客
+		var customer=customers[0];
+		//服务流程
+		imgMove('waiter',600,'请点餐！').then(startOrder).then(tellWaiter).then(cooking);
+
+	</script>
+</body>
+</html>

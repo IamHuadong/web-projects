@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>开餐厅测试</title>
+</head>
+<body>
+	<script src="es5.js"></script>
+	<script>
+		//测试
+		var ifeRestaurant = new Restaurant({
+		    cash: 1000000,
+		    seats: 20,
+		    staff: []
+		});
+
+		var newCook = new Cook("Tony", 10000);
+		ifeRestaurant.hire(newCook);
+
+		console.log(ifeRestaurant.staff[0]);
+
+		ifeRestaurant.fire(newCook);
+		console.log(ifeRestaurant.staff);
+
+		var ee=new Dish('ee',33,55);
+		console.log(ee.name,ee.cost,ee.price);
+	</script>
+</body>
+</html>

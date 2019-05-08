@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>开餐厅测试</title>
+</head>
+<body>
+	<script src="es5.js"></script>
+	<script src="obj.js"></script>
+	<script src="serveEat.js"></script>
+	<script>
+		//菜单
+		let menu=[
+		{name:'鱼香肉丝',price:30},
+		{name:'红烧肘子',price:50},
+		{name:'清蒸鲈鱼',price:65},
+		{name:'霸王别姬',price:120},
+		{name:'龙飞凤舞闹酒天',price:239}
+		];
+
+		/*新建饭店*/		
+		//饭店成立
+		var Restaurant1 = new Restaurant({
+		    cash: 1000000,
+		    seats: 1,
+		    staff: []
+		});
+		//招聘新服务员
+		var waiter1=CreateWaiter('Sara',4500);//服务员
+		// var waiter2=new CreateWaiter('gg',4500);//服务员
+		console.log(waiter1,waiter2);
+		// Restaurant1.hire(waiter1);
+		// //招聘新厨师
+		// var cook1=new CreateCook('Tom',8000);//厨师
+		// Restaurant1.hire(cook1);
+
+		// /*正式营业*/
+		// //产生顾客
+		// var customers=[];
+		// for(var i=0;i<5;i++){
+		// 	var customer=new Customer();
+		// 	if(i%2==0){
+		// 		customer.eated=true;
+		// 	}
+		// 	customers.push(customer);
+		// }
+		// //吃饭
+		// for(var i=0;i<5;i++){
+		// 	service(customers[0],waiter1,cook1,menu);
+		// 	customers.shift();
+		// }
+		
+		
+	</script>
+</body>
+</html>
