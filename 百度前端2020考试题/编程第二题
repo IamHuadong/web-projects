@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="referer" content="never">
+	<title>测试</title>
+	<style>
+		.checkgroup .item{
+		    height: 42px;
+		    line-height: 42px;
+		    padding: 0 10px;
+		    margin: 10px 0;
+		    border: 1px solid #c7c7c7;
+		    border-radius: 6px;
+		}
+		.checkgroup.radius .item{
+		    border-radius: 21px;
+		}
+		.checkgroup .item.selected{
+		    border: 1px solid #08b292;
+		    background: #08b292;
+		    color: #ffffff;
+		}
+	</style>
+</head>
+<body>
+	<div id="jsCheckGroup">
+	    <!-- <div class="checkgroup radius">
+	        <div data-val="a" class="item selected">选项a</div>
+	        <div data-val="b" class="item">选项b</div>
+	        <div data-val="c" class="item">选项c</div>
+	        <div data-val="d" class="item">选项d</div>
+	    </div> -->
+	</div>
+	<script src="test.js"></script>
+	<script>
+		var options = [{test:'选项a', value:'a'}, {test:'选项b', value:'b'}, {test:'选项c', value:'c'}, {test:'选项d', value:'d'}, ];
+		var item = new CheckGroup(document.getElementById('jsCheckGroup'), options, true);
+		var vals = ['a', 'b', 'c']
+		console.log(item.val());
+	</script>
+</body>
+</html>
